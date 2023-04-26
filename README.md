@@ -23,6 +23,16 @@ wrangler logout
 
 ```
 
+**· 远程 VPS 中登录**
+
+执行登录命令并在浏览器中授权后，会跳转到一个`localhost`链接，复制该链接然后新开一个终端窗口，执行以下命令以完成登录；
+
+```bash
+curl <LOCALHOST_URL>
+```
+
+文档链接：「[Using wrangler login on a remote machine](https://developers.cloudflare.com/workers/wrangler/commands/#using-wrangler-login-on-a-remote-machine)」
+
 ## 初始配置
 
 ### 克隆项目并安装依赖
