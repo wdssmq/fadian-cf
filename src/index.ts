@@ -1,9 +1,9 @@
-import { getFormData } from './base';
-import type { DataScheme } from "./worker-configuration";
+import { getFormData } from "./base"
+import type { DataScheme } from "./worker-configuration"
 
 addEventListener("fetch", (event) => {
-    event.respondWith(handleRequest(event.request));
-});
+    event.respondWith(handleRequest(event.request))
+})
 
 class main {
     reqMethod = ""
@@ -13,11 +13,11 @@ class main {
     reqData = {}
     origUrl = ""
     dataScheme = {
-        ts: "int"
+        ts: "int",
     } as DataScheme
     errInfo = {
         code: 0,
-        msg: ""
+        msg: "",
     }
 
     setErr(code: number, msg: string) {
@@ -45,7 +45,7 @@ class main {
             body: JSON.stringify(this.reqData),
             headers: {
                 "Content-Type": "application/json",
-            }
+            },
         }).then(res => res.json())
         return origRes
     }
@@ -54,10 +54,10 @@ class main {
         // 解析请求数据
         this.reqMethod = request.method
         this.reqUrl = request.url
-        this.reqPath = new URL(this.reqUrl).pathname;
+        this.reqPath = new URL(this.reqUrl).pathname
         this.checkPath()
         this.reqHeaders = request.headers
-        if (this.errInfo.code) return;
+        if (this.errInfo.code) return
         this.reqData = await getFormData(request.formData(), this.reqHeaders, this.dataScheme)
 
         // 替换原始地址
