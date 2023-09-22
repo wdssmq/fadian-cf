@@ -1,17 +1,21 @@
 {
-  "name": "fadian",
-  "version": "0.0.1",
-  "devDependencies": {
-    "@cloudflare/workers-types": "^4.20230404.0",
-    "typescript": "^5.0.4",
-    "wrangler": "2.15.1"
-  },
-  "private": true,
-  "scripts": {
-    "start": "wrangler dev",
-    "dev": "wrangler dev",
-    "deploy": "wrangler publish",
-    "view": "bash -c 'echo $npm_package_version'",
-    "git:tag": "bash -c 'git tag -a v$npm_package_version -m \"version $npm_package_version\""
-  }
+    "name": "fadian",
+    "version": "0.0.1",
+    "devDependencies": {
+        "@cloudflare/workers-types": "^4.20230404.0",
+        "@typescript-eslint/eslint-plugin": "^6.7.2",
+        "@typescript-eslint/parser": "^6.7.2",
+        "eslint": "^8.49.0",
+        "typescript": "^5.0.4",
+        "wrangler": "2.15.1"
+    },
+    "private": true,
+    "scripts": {
+        "start": "wrangler dev",
+        "dev": "wrangler dev",
+        "deploy": "wrangler publish",
+        "lint": "eslint . --ext .js,.ts,.mjs --fix --ignore-path .gitignore",
+        "view": "bash -c 'echo $npm_package_version'",
+        "git:tag": "bash -c 'git tag -a v$npm_package_version -m \"version $npm_package_version\""
+    }
 }
