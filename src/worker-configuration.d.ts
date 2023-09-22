@@ -3,4 +3,7 @@ declare global {
     const USER_TOKEN: string;
     // const myKVNamespace: KVNamespace;
 }
-export { }
+interface DataScheme {
+    [key: string]: "str" | "int"
+}
+export { DataScheme }
