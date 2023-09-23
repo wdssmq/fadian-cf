@@ -26,6 +26,18 @@ async function getFormData(_formData: Promise<FormData>, headers: Headers, typeS
     return reqData
 }
 
+async function genMD5(data: string) {
+    const encoder = new TextEncoder()
+    const msgUint8 = encoder.encode(data)
+    const hashBuffer = await crypto.subtle.digest("MD5", msgUint8)
+    const hashArray = Array.from(new Uint8Array(hashBuffer))
+    const hashHex = hashArray
+        .map((b) => b.toString(16).padStart(2, "0"))
+        .join("")
+    return hashHex
+}
+
 export {
     getFormData,
+    genMD5,
 }
