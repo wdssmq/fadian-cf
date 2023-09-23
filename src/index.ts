@@ -1,20 +1,28 @@
 import { getFormData } from "./base"
+import fdApi from "./api"
 import type { DataScheme } from "./worker-configuration"
 
 addEventListener("fetch", (event) => {
     event.respondWith(handleRequest(event.request))
 })
 
+const config = {
+    use_proxy: parseInt(USE_PROXY) || 1,
+    data_scheme: {
+        ts: "int",
+    } as DataScheme,
+}
+
 class main {
+    // 请求信息
     reqMethod = ""
     reqUrl = ""
     reqPath = ""
     reqHeaders = {} as Headers
     reqData = {}
+    // 转发地址
     origUrl = ""
-    dataScheme = {
-        ts: "int",
-    } as DataScheme
+    // ----
     errInfo = {
         code: 0,
         msg: "",
@@ -40,6 +48,9 @@ class main {
     }
 
     async proxy() {
+        if (this.errInfo.code > 0) {
+            return this.errInfo
+        }
         const origRes = await fetch(this.origUrl, {
             method: this.reqMethod,
             body: JSON.stringify(this.reqData),
@@ -50,6 +61,11 @@ class main {
         return origRes
     }
 
+    async reqApi() {
+        const fdApiIt = new fdApi(USER_ID, USER_TOKEN)
+        return await fdApiIt.querySponsor({ page: 1 })
+    }
+
     async init(request: Request) {
         // 解析请求数据
         this.reqMethod = request.method
@@ -58,7 +74,7 @@ class main {
         this.checkPath()
         this.reqHeaders = request.headers
         if (this.errInfo.code) return
-        this.reqData = await getFormData(request.formData(), this.reqHeaders, this.dataScheme)
+        this.reqData = await getFormData(request.formData(), this.reqHeaders, config.data_scheme)
 
         // 替换原始地址
         this.origUrl = this._origUrl(this.reqPath)
@@ -67,12 +83,18 @@ class main {
 }
 
 async function handleRequest(request: Request<unknown, CfProperties<unknown>>) {
-    const mzFadian = new main()
-    await mzFadian.init(request)
-    if (mzFadian.errInfo.code > 0) {
-        return new Response(JSON.stringify(mzFadian.errInfo))
+    const mzMain = new main()
+    await mzMain.init(request)
+
+    let resJSON = ""
+
+    if (config.use_proxy) {
+        const proxyRes = await mzMain.proxy()
+        resJSON = JSON.stringify(proxyRes)
+    } else {
+        const apiRes = await mzMain.reqApi()
+        resJSON = JSON.stringify(apiRes)
     }
 
-    const proxyRes = await mzFadian.proxy()
-    return new Response(JSON.stringify(proxyRes))
+    return new Response(resJSON)
 }
