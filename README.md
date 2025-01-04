@@ -46,7 +46,7 @@ pnpm install
 
 ### 设置 Secrets 变量
 
-> 开发者 | 爱发电：[https://afdian.net/dashboard/dev](https://afdian.net/dashboard/dev "开发者 | 爱发电")
+> 开发者 | 爱发电：[https://afdian.com/dashboard/dev](https://afdian.com/dashboard/dev "开发者 | 爱发电")
 >
 > ↑ 点击链接，获取爱发电 ID 和 TOKEN
 
@@ -112,6 +112,6 @@ https://developers.cloudflare.com/workers/wrangler/commands/#secret
 
 二维码：[https://github.com/wdssmq#二维码](https://github.com/wdssmq#二维码 "wdssmq#二维码")
 
-爱发电：[https://afdian.net/a/wdssmq](https://afdian.net/a/wdssmq "沉冰浮水正在创作和 z-blog 相关或无关的各种有用或没用的代码 | 爱发电")
+爱发电：[https://afdian.com/a/wdssmq](https://afdian.com/a/wdssmq "沉冰浮水正在创作和 z-blog 相关或无关的各种有用或没用的代码 | 爱发电")
 
 更多「小代码」：[https://cn.bing.com/search?q=小代码+沉冰浮水](https://cn.bing.com/search?q=%E5%B0%8F%E4%BB%A3%E7%A0%81+%E6%B2%89%E5%86%B0%E6%B5%AE%E6%B0%B4 "小代码 沉冰浮水 - 搜索")

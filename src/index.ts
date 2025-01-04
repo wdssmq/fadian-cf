@@ -38,7 +38,7 @@ class main {
     }
 
     _origUrl(path: string) {
-        return path.replace("/api", "https://afdian.net/api/open")
+        return path.replace("/api", "https://afdian.com/api/open")
     }
 
     checkPath() {

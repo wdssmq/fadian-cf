@@ -19,7 +19,7 @@ import { genMD5 } from "./base"
 class fdApi {
     opts = {} as ApiOpts
     reqData = {} as ApiReqData
-    baseUrl = "https://afdian.net/api/open/"
+    baseUrl = "https://afdian.com/api/open/"
 
     constructor(id: string, token: string) {
         const ts = Math.floor(Date.now() / 1000)
